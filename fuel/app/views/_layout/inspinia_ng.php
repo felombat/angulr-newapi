@@ -53,6 +53,9 @@
     'plugins/jquery-ui/jquery-ui.js',
     'bootstrap/bootstrap.min.js',
 
+    //dotdotdot
+    'plugins/dotdotdot/jquery.dotdotdot.min.js',
+
     // MetsiMenu -->
     'plugins/metisMenu/jquery.metisMenu.js',
 

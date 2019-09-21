@@ -12,6 +12,7 @@ var api = 'b714f12698014cf4aac6cd930ab5ffae';
 
 function MainCtrl(newsAPIservice, userAPIservice, $scope, $log) {
     $this = this;
+    this.main_article = {};
     this.articles = [];
     this.sources = [];
     this.headlines = [];
@@ -105,18 +106,40 @@ function MainCtrl(newsAPIservice, userAPIservice, $scope, $log) {
         "url": "https%3A%2F%2Fnews.google.com%2Fnews%2Frss%2Fsearch%2Fsection%2Fq%2Fgiz%2BCameroun%3Fned%3Dfr%26gl%3DFR%26hl%3Dfr",
         "name": 'GIZ 2 Cameroun'
     }, ];
-    this.getNewsUpdates = function(url) {
-        var url = MainCtrl.source;
-        newsAPIservice.updateNews(url).then(function(response) {
+    this.getNewsUpdates = function() {
+        //var _source = MainCtrl.source ;
+        // newsAPIservice.updateNews(url).then(function(response) {
+        //     MainCtrl.status  = response.status;
+        //     // $scope.latestnews = $this.latestnews = response.items;
+        //     $scope.headlines = $this.headlines = response.items;
+        //     //MainCtrl.latestnews = response.items;
+        //     $log.log("updates", MainCtrl.latestnews);
+        //     console.log("Status:", response.status);
+        //     console.info("Total:", response.totalResults);
+        //     //MainCtrl.articles = [];
+        // }, function() {
+        //     //$scope.weatherDescription = "Could not obtain data";
+        //     MainCtrl.status = response.status;
+        //     $scope.latestnews = [];
+        //     MainCtrl.latestnews = [];
+        //     //console.log("Status:", response.status);
+        //     //console.info("Total:", response.totalResults);
+        //     MainCtrl.articles = [];
+        // });
+        console.log("Change Source to :", MainCtrl.source);
+
+        // Alt Method: 
+        newsAPIservice.updateNews(MainCtrl.source).success(function(response) {
             MainCtrl.status  = response.status;
             // $scope.latestnews = $this.latestnews = response.items;
             $scope.headlines = $this.headlines = response.items;
-            MainCtrl.latestnews = response.items;
+            //MainCtrl.latestnews = response.items;
             $log.log("updates", MainCtrl.latestnews);
             console.log("Status:", response.status);
             console.info("Total:", response.totalResults);
             //MainCtrl.articles = [];
-        }, function() {
+            //$scope.apply();
+        }).error(function() {
             //$scope.weatherDescription = "Could not obtain data";
             MainCtrl.status = response.status;
             $scope.latestnews = [];
@@ -163,12 +186,12 @@ function MainCtrl(newsAPIservice, userAPIservice, $scope, $log) {
     this.userName = 'Demo user';
     this.helloText = 'NewsFeed App #2019.09';
     this.descriptionText = 'It is an application skeleton for a typical AngularJS web app. You can use it to quickly bootstrap your angular webapp projects and dev environment for these projects.';
-    /** 
+    
     newsAPIservice.getHeadlines().success(function(response) {
         MainCtrl.status = response.status;
         $scope.headlines = $this.headlines = response.articles;
         console.log("Status:", response.status);
-        console.info("Total:", response.totalResults);
+        //console.info("Total:", response.totalResults);
 
         MainCtrl.articles = [];
     }).error(function(response) {
@@ -178,7 +201,10 @@ function MainCtrl(newsAPIservice, userAPIservice, $scope, $log) {
         //console.info("Total:", response.totalResults);
 
         MainCtrl.articles = [];
-    }); */
+    }); 
+    
+    // Methode Async 
+    /*
     newsAPIservice.getHeadlines().then(function(response) {
         $this.status = response.status;
         $scope.headlines = $this.headlines = response.articles;
@@ -192,7 +218,7 @@ function MainCtrl(newsAPIservice, userAPIservice, $scope, $log) {
         //console.log("Status:", response.status);
         //console.info("Total:", response.totalResults);
         $this.articles = [];
-    });
+    }); */ 
     newsAPIservice.getHeroes().then(function(response) {
         $this.status = response.status;
         $scope.heroes = $this.heroes = response;
@@ -207,11 +233,15 @@ function MainCtrl(newsAPIservice, userAPIservice, $scope, $log) {
         //console.info("Total:", response.totalResults);
         $this.articles = [];
     });
+    
+    /*
+    *
+    *
     newsAPIservice.updateNews().then(function(response) {
         $this.status = response.status;
         $scope.localnews = $this.localnews = response.items;
         console.log("Status:", response.status);
-        console.info("Total:", response.length);
+        console.info("Total:", response.totalResults);
         $this.articles = [];
     }, function() {
         //$scope.weatherDescription = "Could not obtain data";
@@ -220,12 +250,33 @@ function MainCtrl(newsAPIservice, userAPIservice, $scope, $log) {
         //console.log("Status:", response.status);
         //console.info("Total:", response.totalResults);
         $this.articles = [];
-    });
+    }); */
+
+    // Update newslist : 
+    newsAPIservice.updateNews().success(function(response) {
+        MainCtrl.status = response.status;
+        $scope.headlines = $this.headlines = response.items;
+        $scope.localnews = $this.localnews = response.items;
+        console.log("Status:", response.status);
+        console.info("Total:", response.totalResults);
+
+        //MainCtrl.articles = [];
+    }).error(function(response) {
+        MainCtrl.status = response.status;
+        $scope.headlines = $this.headlines = [];
+        //console.log("Status:", response.status);
+        //console.info("Total:", response.totalResults);
+
+        MainCtrl.articles = [];
+    }); 
     //MainCtrl.scopes = newsAPIservice.updateNewsScopes();
     newsAPIservice.getLatestNews("GIZ Ghana").success(function(response) {
         $this.status = response.status;
-        $scope.latestnews = $this.latestnews = response.articles;
-        //console.log("Status:", response.status);
+        $scope.latestnews = response.articles;
+        $this.latestnews = response.articles;
+        $scope.main_article = response.articles[0];
+        $this.main_article = response.articles[0];
+        console.log("Status:", response.status);
         //console.info("Total:", response.length);
     });
     userAPIservice.getEmployees().success(function(response) {

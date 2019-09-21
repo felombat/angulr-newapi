@@ -52,7 +52,7 @@ angular.module('coopapp')
             var scopes  =[
                 {"id":2, "url":"https://fr.allafrica.com/tools/headlines/rdf/cameroon/headlines.rdf", "name":"Cameroun - fr"},
                 {"id":9, "url":"https://allafrica.com/tools/headlines/rdf/cameroon/headlines.rdf", "name":"Cameroon - en"},
-                {"id":6, "url":"https://www.journalducameroun.com/feed/", "name":"Journal du Cameroun"},
+                {"id":6, "url":"https://www.journalducameroun.com/rss/", "name":"Journal du Cameroun"},
                 {"id":1, "url":"https://allafrica.com/tools/headlines/rdf/aid/headlines.rdf", "name":"Aid & Assistance"}, 
                 {"id":10, "url":"https://fr.allafrica.com/tools/headlines/rdf/aid/headlines.rdf", "name":"Aide & Assistance / Coopération"},
                 
