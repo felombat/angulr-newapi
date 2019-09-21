@@ -1,0 +1,75 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="text-center m-t-lg">
+                <h1>
+                    GIZ Cameroun Organigram HEY §§§§ : {{main.employees.length}}  //  {{employees.length}}
+                </h1>
+                <small> Configure in config.js as Users state. </small>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <p>
+                Filter :
+                <input aria-label="filter employees Contacts" class="col-lg-8" ng-model="q" placeholder="filter Contacts..." type="search"/>
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 animated fadeInLeft" ng-repeat="employee in employees | filter:q as results track by employee.name">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="contact-box">
+                        <a ui-sref="profile">
+                            <div class="col-sm-4">
+                                <div class="text-center">
+                                    <!-- <img alt="image" class="img-circle m-t-xs img-responsive" ng-src="img/{{employee.sapno}}.jpg" fallback-src="views/avatars/default-image.png" onerror="this.src='assets/img/networkicons/default.png'"/> -->
+                                    <img alt="image" class="img-circle m-t-xs img-responsive" ng-src="img/{{employee.sapno}}.jpg" onerror="this.src='views/avatars/default-image.png'"/>
+                                    <div class="m-t-xs font-bold">
+                                        {{employee.title}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-8">
+                                <h3>
+                                    <strong>
+                                        {{employee.name}}
+                                    </strong>
+                                </h3>
+                                <p>
+                                    <i class="fa fa-map-marker">
+                                    </i>
+                                    {{employee.project}}
+                                </p>
+                                <address>
+                                    <strong>
+                                        Address
+                                    </strong>
+                                    <br>
+                                        {{employee.email}}
+                                        <br>
+                                            <em>
+                                                N°{{employee.sapno}}
+                                            </em>
+                                            <br>
+                                                <abbr title="Phone">
+                                                    {{employee.tel}}
+                                                </abbr>
+                                            </br>
+                                        </br>
+                                    </br>
+                                </address>
+                            </div>
+                            <div class="clearfix">
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

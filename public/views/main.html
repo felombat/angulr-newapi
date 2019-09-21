@@ -1,0 +1,408 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+    <!-- Header -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="text-center m-t-lg">
+                <h1>
+                    {{main.helloText}}  ::
+                    <em>
+                        {{heroes.length}}
+                    </em>
+                    {{headlines.length}} /// {{main.headlines.length}} <br>
+
+                    {{latestnews.length}} /// {{main.latestnews.length}}
+                </h1>
+                <small>
+                    {{main.descriptionText}}
+                </small>
+                
+            </div>
+        </div>
+
+        <div class="form-group"><label class="col-sm-2 control-label text-right">Search : </label>
+
+                    <div class="col-sm-6">
+                        <form action="" class="push-right">
+                            <div class="input-group m-b">
+                                <div class="input-group-btn dropdown" uib-dropdown="">
+                                    
+
+                                    <!-- <select name="mainsource" id="mainsource" class="btn btn-white dropdown-toggle" >
+                                        <option value="1">CAM - FR</option>
+                                        <option value="2">CAM - EN</option>
+                                        <option value="3">Journal du CAMEROUN</option>
+
+                                    </select> -->
+
+                                    <select name="infosource" id="infosource" ng-change="main.getNewsUpdates()" class="btn btn-white dropdown-toggle" ng-model="main.source" ng-options="s.name for s in main.scopes track by s.id"></select>
+                                </div>
+                                <span class="input-group-addon"> 🔎 </span> 
+                                <input class="form-control" ng-model="main.query" type="text" placeholder="Search here ...">
+                            </div>
+                         
+                        
+                         </form>
+                    </div>
+                </div>
+
+    </div>
+
+    <!-- Articles list  -->
+
+    <div class="row">
+            <div class="col-lg-12">
+                    <div class="text-center m-t-lg">
+                        <h1>
+                            Lastest ::: latestnews var !!! 
+                        </h1>
+                        <small>Configure in config.js as minor state.</small>
+                    </div>
+                </div>
+
+            <div class="wrapper wrapper-content  animated fadeInRight blog ">
+                        
+
+                        
+                    <div class="row">
+                                    <div class="col-lg-4">
+
+                                        <!-- Article item -->
+                                        <div ng-repeat="article in latestnews | filter:q as results track by article.title"   ng-if="$index % 3 == 1" class="ibox">
+                                            <div class="ibox-content">
+                                                <a ui-sref="app.article" class="btn-link" href="#/app/article">
+                                                    <a ng-href="article.url">Details</a>
+                                                    <h2>
+                                                        {{article.title}}
+                                                    </h2>
+                                                </a>
+                                                <div class="small m-b-xs">
+                                                    <strong>{{article.author}}</strong> <span class="text-muted"><i class="fa fa-clock-o"></i> {{article.publishedAt}}</span>
+                                                </div>
+                                                <p>
+                                                    {{article.description}}
+                                                </p>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <h5>Tags:</h5>
+                                                        <button class="btn btn-primary btn-xs" type="button">Model</button>
+                                                        <button class="btn btn-white btn-xs" type="button">Publishing</button>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="small text-right">
+                                                            <h5>Stats:</h5>
+                                                            <div> <i class="fa fa-comments-o"> </i> 56 comments </div>
+                                                            <i class="fa fa-eye"> </i> 144 views
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4">
+
+                                            <!-- Article item -->
+                                            <div ng-repeat="article in latestnews | filter:q as results track by article.title"   ng-if="$index % 3 == 2" class="ibox">
+                                                <div class="ibox-content">
+                                                    <a ui-sref="app.article" class="btn-link" href="#/app/article">
+                                                        <a ng-href="article.url">Details</a>
+                                                        <h2>
+                                                            {{article.title}}
+                                                        </h2>
+                                                    </a>
+                                                    <div class="small m-b-xs">
+                                                        <strong>{{article.author}}</strong> <span class="text-muted"><i class="fa fa-clock-o"></i> {{article.publishedAt}}</span>
+                                                    </div>
+                                                    <p>
+                                                        {{article.description}}
+                                                    </p>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <h5>Tags:</h5>
+                                                            <button class="btn btn-primary btn-xs" type="button">Model</button>
+                                                            <button class="btn btn-white btn-xs" type="button">Publishing</button>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="small text-right">
+                                                                <h5>Stats:</h5>
+                                                                <div> <i class="fa fa-comments-o"> </i> 56 comments </div>
+                                                                <i class="fa fa-eye"> </i> 144 views
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-lg-4">
+
+                                                <!-- Article item -->
+                                                <div ng-repeat="article in latestnews | filter:q as results track by article.title"   ng-if="$index % 3 == 0" class="ibox">
+                                                    <div class="ibox-content">
+                                                        <a ui-sref="app.article" class="btn-link" href="#/app/article">
+                                                            <a ng-href="article.url">Details</a>
+                                                            <h2>
+                                                                {{article.title}}
+                                                            </h2>
+                                                        </a>
+                                                        <div class="small m-b-xs">
+                                                            <strong>{{article.author}}</strong> <span class="text-muted"><i class="fa fa-clock-o"></i> {{article.publishedAt}}</span>
+                                                        </div>
+                                                        <p>
+                                                            {{article.description}}
+                                                        </p>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <h5>Tags:</h5>
+                                                                <button class="btn btn-primary btn-xs" type="button">Model</button>
+                                                                <button class="btn btn-white btn-xs" type="button">Publishing</button>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="small text-right">
+                                                                    <h5>Stats:</h5>
+                                                                    <div> <i class="fa fa-comments-o"> </i> 56 comments </div>
+                                                                    <i class="fa fa-eye"> </i> 144 views
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    <div class="row" ng-hide="true">
+                        <div class="col-lg-1">
+                            <div class="text-center m-t-lg">
+                                <span style="text-shadow: 1px solid ">:::::::::::::::::::::/\:::::::::::::::::::::</span>
+                            </div>    
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-lg-4">
+
+                            <!-- Article item -->
+                            <div ng-repeat="article in headlines | filter:main.query as results track by article.title"   ng-if="$index % 3 == 0" class="ibox">
+                                <div class="ibox-content">
+                                    <div class="image">
+                                        <img class="img-responsive" alt="🎈" ng-src="{{article.thumbnail}}"  />
+                                    </div>
+                                    <a ui-sref="app.article" class="btn-link" href="#/app/article">
+                                        <a ng-href="article.url">Details</a>
+                                        <h2>
+                                            {{article.title}}
+                                        </h2>
+                                    </a>
+
+                                    <div class="small m-b-xs">
+                                        <strong>{{article.author}}</strong> <span class="text-muted"><i class="fa fa-clock-o"></i> {{article.publishedAt}}</span>
+                                    </div>
+                                    <p>
+                                        {{article.description}}
+                                    </p>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h5>Tags:</h5>
+                                            <button class="btn btn-primary btn-xs" type="button">Model</button>
+                                            <button class="btn btn-white btn-xs" type="button">Publishing</button>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="small text-right">
+                                                <h5>Stats:</h5>
+                                                <div> <i class="fa fa-comments-o"> </i> 56 comments </div>
+                                                <i class="fa fa-eye"> </i> 144 views <br>
+                                                <a href="{{article.url}}" title="{{article.title}}">more >></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4">
+
+                                <!-- Article item -->
+                                <div ng-repeat="article in headlines | filter:main.query as results track by article.title"   ng-if="$index % 3 == 1" class="ibox">
+                                    <div class="ibox-content">
+                                        <div class="image">
+                                            <img class="img-responsive" alt="🎈" ng-src="{{article.thumbnail}}"  />
+                                        </div>
+                                        <a ui-sref="app.article" class="btn-link" href="#/app/article">
+                                            <a ng-href="article.url">Details</a>
+                                            <h2>
+                                                {{article.title}}
+                                            </h2>
+                                        </a>
+                                        <div class="small m-b-xs">
+                                            <strong>{{article.author}}</strong> <span class="text-muted"><i class="fa fa-clock-o"></i> {{article.publishedAt}}</span>
+                                        </div>
+                                        <p>
+                                            {{article.description}}
+                                        </p>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <h5>Tags:</h5>
+                                                <button class="btn btn-primary btn-xs" type="button">Model</button>
+                                                <button class="btn btn-white btn-xs" type="button">Publishing</button>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="small text-right">
+                                                    <h5>Stats:</h5>
+                                                    <div> <i class="fa fa-comments-o"> </i> 56 comments </div>
+                                                    <i class="fa fa-eye"> </i> 144 views <br>
+                                                    <a href="{{article.url}}" title="{{article.title}}">more >></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-4">
+
+                                    <!-- Article item -->
+                                    <div ng-repeat="article in headlines | filter:main.query as results track by article.title"   ng-if="$index % 3 == 2" class="ibox">
+                                        <div class="ibox-content">
+                                            <div class="image">
+                                                <img class="img-responsive" alt="🎈" ng-src="{{article.thumbnail}}"  />
+                                            </div>
+                                            <a ui-sref="app.article" class="btn-link" href="#/app/article">
+                                                <a ng-href="article.url">Details</a>
+                                                <h2>
+                                                    {{article.title}}
+                                                </h2>
+                                            </a>
+                                            <div class="small m-b-xs">
+                                                <strong>{{article.author}}</strong> <span class="text-muted"><i class="fa fa-clock-o"></i> {{article.publishedAt}}</span>
+                                            </div>
+                                            <p>
+                                                {{article.description}}
+                                            </p>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <h5>Tags:</h5>
+                                                    <button class="btn btn-primary btn-xs" type="button">Model</button>
+                                                    <button class="btn btn-white btn-xs" type="button">Publishing</button>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="small text-right">
+                                                        <h5>Stats:</h5>
+                                                        <div> <i class="fa fa-comments-o"> </i> 56 comments </div>
+                                                        <i class="fa fa-eye"> </i> 144 views <br>
+                                                        <a href="{{article.url}}" title="{{article.title}}">more >></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                    </div>
+                </div>
+    </div>
+
+</div>
+
+<div class="wrapper wrapper-content  animated fadeInRight ng-scope" ng-controller="truncateCtrl">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>Truncate string - dotdotdot</h5>
+                </div>
+
+                <div class="ibox-content">
+
+                    <p>
+                        A jQuery plugin for advanced cross-browser ellipsis on multiple line content.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>Example container with fixed height</h5>
+                </div>
+                <div class="ibox-content fh-200">
+
+                    <p class="font-bold  alert alert-warning m-b-sm">
+                        This container has fixed height with 200px. Text overflow the container.
+                    </p>
+                    <p>
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>Example container with fixed height</h5>
+                </div>
+                <div class="ibox-content truncate fh-200 ng-isolate-scope is-truncated" truncate="" truncate-options="truncateOptions" style="overflow-wrap: break-word;">
+
+                    <p class="font-bold  alert alert-success m-b-sm" style="display: block;">
+                        This container has fixed height with 200px and truncate feature that prevent form overflow the text.
+                    </p>
+                    <p style="display: block;">
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also... </p></div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>Custom ellipsis</h5>
+                </div>
+                <div class="ibox-content truncate1 fh-250 ng-isolate-scope is-truncated" truncate="" truncate-options="truncateOptions2" style="overflow-wrap: break-word;">
+
+                    <p class="font-bold" style="display: block;">
+                        You can also change the ellipsis
+                    </p>
+                    <p style="display: block;">
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when ///...</p></div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>You can also choose how to cut off the text</h5>
+                </div>
+                <div class="ibox-content truncate2 fh-250 ng-isolate-scope is-truncated" truncate="" truncate-options="truncateOptions3" style="overflow-wrap: break-word;">
+
+                    <p class="font-bold" style="display: block;">
+                        Example with letter cut off
+                    </p>
+                    <p style="display: block;">
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an... </p></div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>You can also choose how to cut off the text Too 💡😉</h5>
+                </div>
+                <div class="ibox-content truncate2 fh-250 ng-isolate-scope is-truncated" truncate="" truncate-options="truncateOptions3" style="overflow-wrap: break-word;">
+
+                    <p class="font-bold" style="display: block;">
+                        Example with letter cut off
+                    </p>
+                    <p style="display: block;">
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an... </p></div>
+            </div>
+        </div>
+    </div>
+</div>
