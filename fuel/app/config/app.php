@@ -6,7 +6,7 @@ return array(
 	"title" => 'Freude der GIZ',
 	"author"  => 'F. Elombat',
 	"organisation" => 'Astrio',
-	"url" => 'http://outlqndish.astrio.online',
+	"url" => 'http://outlandish.astrio.online',
 	"email" => 'support@astrio.online',
 	"tel" => '+237 6 xxx xxx xx',
 	"admin_email" => 'f.elombat@gmail.com',
